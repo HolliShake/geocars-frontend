@@ -44,21 +44,7 @@ axiosIns.interceptors.response.use(response => {
   // Disable global loading
   useLoading().setLoading(false)
   
-  // Handle error
-  if (error?.response?.status === 401) {
-    // ℹ️ Logout user and redirect to login page
-    // Remove "userData" from localStorage
-    localStorage.removeItem('userData')
-
-    // Remove "accessToken" from localStorage
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('userAbilities')
-
-    // If 401 response returned from api
-    router.push('/login')
-  }
-  else {
-    return Promise.reject(error)
-  }
+  // Return error
+  return Promise.reject(error)
 })
 export default axiosIns

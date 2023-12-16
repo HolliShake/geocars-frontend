@@ -1,14 +1,21 @@
 <script setup>
 import useAuthStore from '@/stores/auth.store'
 import avatar1 from '@images/avatars/avatar-1.png'
+import { useRouter } from 'vue-router'
 
-// 👉 Auth store
+const router = useRouter()
 const authStore = useAuthStore()
 
-// 👉 User data
 const userData = computed(() => {
   return authStore.getUserData
 })
+
+async function handleLogout() {
+  localStorage.removeItem('userData')
+  localStorage.removeItem('userAbilities')
+  localStorage.removeItem('accessToken')
+  router.replace('/login')
+}
 </script>
 
 <template>
@@ -30,7 +37,6 @@ const userData = computed(() => {
       <!-- SECTION Menu -->
       <VMenu
         activator="parent"
-        width="230"
         location="bottom end"
         offset="14px"
       >
@@ -57,9 +63,9 @@ const userData = computed(() => {
             </template>
 
             <VListItemTitle class="font-weight-semibold">
-              {{ userData.lastName }}, {{ userData.firstName }}
+              {{ userData.last_name }}, {{ userData.first_name }}
             </VListItemTitle>
-            <VListItemSubtitle>Admin</VListItemSubtitle>
+            <VListItemSubtitle>{{ userData.role }}</VListItemSubtitle>
           </VListItem>
 
           <VDivider class="my-2" />
@@ -94,7 +100,10 @@ const userData = computed(() => {
           <VDivider class="my-2" />
 
           <!-- 👉 Logout -->
-          <VListItem to="/login">
+          <VListItem
+            to="/login"
+            @click="handleLogout"
+          >
             <template #prepend>
               <VIcon
                 class="me-2"

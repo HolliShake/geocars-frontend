@@ -197,7 +197,7 @@ watch(selectedPlan, async selectedPlan => {
   </section>
 </template>
 
-<route>
+<route lang="yaml">
   meta:
     subject: 'Auth'
     action: 'read'

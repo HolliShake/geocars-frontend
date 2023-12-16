@@ -9,7 +9,7 @@ const loader = useLoading()
 <template>
   <div
     v-show="loader.isLoading"
-    id="loading-bg"
+    id="full-loading-control"
   >
     <div class="loading-logo">
       <!-- SVG Logo -->
@@ -67,14 +67,14 @@ const loader = useLoading()
     overflow-y: scroll;
   }
 
-  #loading-bg {
-    position: absolute;
+  .full-loading-control {
+    position: fixed;
     z-index: 1000000;
     display: block;
     backdrop-filter: blur(2px);
     background: transparent !important;
-    block-size: 100%;
-    inline-size: 100%;
+    width: 100vw !important;
+    height: 100vh !important;
   }
 
   .loading-logo {

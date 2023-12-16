@@ -203,7 +203,7 @@ onMounted(async () => {
   </section>
 </template>
 
-<route>
+<route lang="yaml">
   meta:
     subject: Admin
     action: read

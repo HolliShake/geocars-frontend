@@ -1,4 +1,5 @@
 <script setup>
+import helpers from "@/helpers"
 import { useAppAbility } from "@/plugins/casl/useAppAbility"
 import AuthService from "@/services/auth.service"
 import useAuthStore from '@/stores/auth.store'
@@ -11,16 +12,8 @@ import { themeConfig } from '@themeConfig'
 import { useRouter } from 'vue-router'
 import { VForm } from 'vuetify/components/VForm'
 
-// 👉 Router
 const router = useRouter()
-
-// 👉 Ability
 const ability = useAppAbility()
-
-// 👉 Auth service
-const authService = new AuthService()
-
-// 👉 Auth store
 const authStore = useAuthStore()
 
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
@@ -42,22 +35,19 @@ const toast = inject("toast")
 
 // 👉 On login
 async function onLogin() {
-  try {
-    const { message: error, status: code, data: response } = await authService.login(email.value, password.value)
+  AuthService.login(email.value, password.value)
+    .then(res => {
+      authStore.initialize(res.data)
+      ability.update(res.data.user_access.map(a => ({
+        subject: a.role,
+        action: a.action,
+      })))
 
-    if (code == 200)
-    {
-      await authStore.initialize(response)
-      ability.update(authStore.getUserAbilities)
-      router.replace({
-        name: 'index',
-      })
-    } else {
-      toast.error(error)
-    }
-  } catch (err) {
-    error.value = err.response?.data ?? err.message
-  }
+      router.replace(helpers.resolver.getRootPath())
+    })
+    .catch(err => {
+      error.value = err.response.data.message
+    })
 }
 </script>
 
@@ -82,6 +72,7 @@ async function onLogin() {
           :flat="$vuetify.display.smAndDown"
           :max-width="500"
           class="mt-12 mt-sm-0 pa-4"
+          :color="$vuetify.display.mdAndUp ? 'rgb(var(--v-theme-background))' : 'rgb(var(--v-theme-surface))'"
         >
           <VCardText>
             <VNodeRenderer

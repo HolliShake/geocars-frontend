@@ -5,6 +5,7 @@ import { hexToRgb } from '@layouts/utils'
 import { toast } from 'vue3-toastify'
 import { useTheme } from 'vuetify'
 import Loader from './components/Loader.vue'
+import AuthContext from './context/AuthContext.vue'
 
 const {
   syncInitialLoaderTheme,
@@ -29,14 +30,16 @@ provide("swal", swal)
 </script>
 
 <template>
-  <VLocaleProvider :rtl="isAppRtl">
-    <!-- Loading screen -->
-    <Loader />
-    <!-- ℹ️ This is required to set the background color of active nav link based on currently active global theme's primary -->
-    <VApp :style="`--v-global-theme-primary: ${hexToRgb(global.current.value.colors.primary)}`">
-      <QuestionDialog ref="swal" />
-      <RouterView />
-      <ScrollToTop />
-    </VApp>
-  </VLocaleProvider>
+  <AuthContext>
+    <VLocaleProvider :rtl="isAppRtl">
+      <!-- Loading screen -->
+      <Loader />
+      <!-- ℹ️ This is required to set the background color of active nav link based on currently active global theme's primary -->
+      <VApp :style="`--v-global-theme-primary: ${hexToRgb(global.current.value.colors.primary)}`">
+        <QuestionDialog ref="swal" />
+        <RouterView />
+        <ScrollToTop />
+      </VApp>
+    </VLocaleProvider>
+  </AuthContext>
 </template>
