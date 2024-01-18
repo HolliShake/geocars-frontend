@@ -10,8 +10,10 @@ import authV2MaskLight from '@images/pages/misc-mask-light.png'
 import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
 import { themeConfig } from '@themeConfig'
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { VForm } from 'vuetify/components/VForm'
 
+const router = useRouter()
 const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
 const isPasswordVisible = ref(false)
 const refVForm = ref()
@@ -61,7 +63,8 @@ async function onRegister(e) {
     role: role.value,
   })
     .then(res => {
-
+      toast.success("Successfully registered!")
+      setTimeout(() => router.push('login'), 3000)
     })
     .catch(err => {
       console.error(err)

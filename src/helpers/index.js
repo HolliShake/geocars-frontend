@@ -20,6 +20,9 @@ const formater = ({
   numberToMoney: number => {
     return parseFloat(number).toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
   },
+  moneyToNumber: money => {
+    return parseFloat(money.replace(/,/g, ""))
+  },
 })
 
 const resolver = {

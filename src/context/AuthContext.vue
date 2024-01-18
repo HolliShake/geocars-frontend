@@ -54,7 +54,7 @@ onMounted(() => {
       // remove loading
       loading.setLoading(false)
     })
-    .catch(() => {
+    .catch(err => {
       toast.error("Failed to fetch user data.")
     })
 })
@@ -63,6 +63,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <FullpageLoader v-if="acquireLoading && loading.isLoading" />
+  <section v-if="acquireLoading && loading.isLoading">
+    <FullpageLoader />
+  </section>
   <slot v-else />
 </template>
+

@@ -1,7 +1,7 @@
 <script setup>
 import helpers from '@/helpers'
 import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
-import misc404 from '@images/pages/404.png'
+import misc401 from '@images/pages/401.png'
 import miscMaskDark from '@images/pages/misc-mask-dark.png'
 import miscMaskLight from '@images/pages/misc-mask-light.png'
 
@@ -11,8 +11,8 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
 <template>
   <div class="misc-wrapper">
     <ErrorHeader
-      error-title="Page Not Found :("
-      error-description="We couldn't find the page you are looking for."
+      error-title="Unautorized :("
+      error-description="We couldn't let you in on this page"
     />
     <VBtn
       :to="helpers.resolver.getRootPath()"
@@ -24,7 +24,7 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
     <!-- 👉 Image -->
     <div class="misc-avatar w-100 text-center">
       <VImg
-        :src="misc404"
+        :src="misc401"
         alt="Coming Soon"
         :max-width="200"
         class="mx-auto"
@@ -45,6 +45,4 @@ const authThemeMask = useGenerateImageVariant(miscMaskLight, miscMaskDark)
 <route lang="yaml">
 meta:
   layout: blank
-  action: read
-  subject: Auth
 </route>

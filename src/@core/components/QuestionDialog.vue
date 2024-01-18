@@ -73,6 +73,7 @@ export default {
               :color="params.dangerMode ? 'error' : 'primary'"
               block
               class="py-6"
+              rounded="0"
               @click="agreeDialog"
             >
               {{ params.trueBtn }}
@@ -85,6 +86,7 @@ export default {
               color="secondary"
               block
               class="py-6"
+              rounded="0"
               @click="closeDialog"
             >
               {{ params.falseBtn }}

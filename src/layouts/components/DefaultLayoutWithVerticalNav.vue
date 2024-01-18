@@ -1,6 +1,5 @@
 <script setup>
 import navItems from '@/navigation/vertical'
-import SelectMyPlan from "@/views/pages/system/user-plan/SelectMyPlan.vue"
 import { useThemeConfig } from '@core/composable/useThemeConfig'
 
 // Components
@@ -34,7 +33,6 @@ const { width: windowWidth } = useWindowSize()
 
         <VSpacer />
         
-        <SelectMyPlan />
         <NavbarThemeSwitcher class="ms-3" />
         <UserProfile class="ms-3" />
       </div>

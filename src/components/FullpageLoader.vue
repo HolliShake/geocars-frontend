@@ -9,7 +9,7 @@ const loader = useFullPageLoader()
 <template>
   <div 
     v-show="loader.isLoading"
-    id="full-page-loader-control"
+    class="full-page-loader-control"
   >
     <div class="loading-logo">
       <!-- SVG Logo -->
@@ -280,8 +280,8 @@ const loader = useFullPageLoader()
     background: transparent !important;
     width: 100vw !important;
     height: 100vh !important;
+    background-color: rgb(var(--v-theme-background));
   }
-
 
   .loading-logo {
     position: absolute;

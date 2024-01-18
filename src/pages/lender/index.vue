@@ -10,7 +10,7 @@
 
 <route lang="yaml">
   meta:
-    subject: admin
+    subject: lender
     action: read
     requiresAuth: true
 </route>

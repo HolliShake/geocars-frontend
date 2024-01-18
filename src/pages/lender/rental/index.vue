@@ -2,7 +2,7 @@
   <section>
     <VCard>
       <VCardText>
-        <h1>Dashboard</h1>
+        <h1>Rental</h1>
       </VCardText>
     </VCard>
   </section>
@@ -10,7 +10,7 @@
 
 <route lang="yaml">
   meta:
-    subject: admin
+    subject: lender
     action: read
     requiresAuth: true
 </route>

@@ -43,10 +43,16 @@ async function onLogin() {
         action: a.action,
       })))
 
+      console.log(helpers.resolver.getRootPath())
+
       router.replace(helpers.resolver.getRootPath())
     })
     .catch(err => {
-      error.value = err.response.data.message
+      if (err.response?.data.message) {
+        error.value = err.response.data.message
+      } else {
+        toast.error('Something went wrong')
+      }
     })
 }
 </script>
